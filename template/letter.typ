@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "@local/typcv:0.1.0": *
 #show: cover_letter
 #set text(size: 12pt)
 
@@ -25,4 +25,4 @@ Sincerely,
 #letterFooter(  
   name: "Faye Valentine",
 )
-#letterSignature("/media/signature.jpeg")
+#letterSignature(image("/media/signature.jpeg", width: 25%))

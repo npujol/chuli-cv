@@ -88,7 +88,7 @@
     right, 
     dx:-65%, 
     dy:-4%, 
-    image(path, width: 25%)
+    path,
   )
 }
 
@@ -204,7 +204,7 @@ let body(
     stroke: none,
     align: horizon,
     column-gutter: entry-style.margins.between-logo-and-title,
-    {image(logo)},
+    {logo},
     table(
       columns: (1fr),
       inset: 0pt,
@@ -345,11 +345,7 @@ let body(
       row-gutter: 2pt,
       stroke: none,
       align: horizon,
-      image(
-        logo, 
-        width: 10pt, 
-        height: 10pt
-      ),
+      logo,
       text(
         title,           
         size: 10pt,
