@@ -1,4 +1,4 @@
-#import "lib.typ": *
+#import "../lib.typ": *
 #show: cover_letter
 #set text(size: 12pt)
 
