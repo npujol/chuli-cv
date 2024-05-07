@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "@local/typcv:0.1.0": *
 #import "@preview/fontawesome:0.1.0": *
 
 #show: cv
@@ -50,7 +50,7 @@
       link: "#"
     ),
   ),
-  profile-picture: "/media/avatar.png"
+  profile-picture: image("media/avatar.png")
 )
 
 #show: body => columns(2, body)
@@ -61,7 +61,7 @@
   company-or-university: "Bebop", 
   date: "2068 - Today", 
   location: "Earth", 
-  logo: "media/experience.png",
+  logo: image("media/experience.png"),
   description: list(
     [lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.],   
     [ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.],
@@ -77,7 +77,7 @@
   company-or-university: "Red Tail", 
   date: "2040 - 2068", 
   location: "Earth", 
-  logo: "media/experience.png",
+  logo: image("media/experience.png"),
   description: list(
     [lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.],   
     [ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.],
@@ -96,7 +96,7 @@
   company-or-university: "Somewhere", 
   date: "2060 - 2068", 
   location: "Other somewhere", 
-  logo: "media/education.png",
+  logo: image("media/education.png", width: 10pt, height: 10pt),
   gpa: "50020",
   gpa_total: "50000"
 )
@@ -107,7 +107,7 @@
   company-or-university: "Personal Project", 
   date: "2068", 
   location: "", 
-  logo: "media/avatar.png", 
+  logo: image("media/avatar.png"), 
   description: list(
     [lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.],   
     [ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.],
@@ -119,7 +119,7 @@
   company-or-university: "Personal Project", 
   date: "2040", 
   location: "", 
-  logo: "media/avatar.png", 
+  logo: image("media/avatar.png"), 
   description: list(
     [lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.],   
     [ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.],
