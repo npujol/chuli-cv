@@ -23,12 +23,12 @@ jobs:
         with:
           version: 'latest'
 
-      - run: typst compile cv.typ --font-path ./src/fonts
-      - run: typst compile letter.typ --font-path ./src/fonts
+      - run: typst compile ./template/cv.typ --font-path ./src/fonts --root .
+      - run: typst compile ./template/letter.typ --font-path ./src/fonts --root .
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: output
-          path: ./*.pdf
+          path: ./template/*.pdf
           if-no-files-found: error
