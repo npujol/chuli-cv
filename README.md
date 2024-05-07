@@ -1,6 +1,8 @@
 # CV in Typst
 
-These are my CV and cover letter templates written in Typst.
+These are a minimalistic and modern CV and cover letter written in Typst.
+
+![thumbnail](thumbnail.png)
 
 ## Setup
 
