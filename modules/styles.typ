@@ -1,8 +1,8 @@
 #let colors = (
   accent: rgb("#007fad"),
   inactive: luma(170),
-  navy: rgb("#001f3f"),
-  aqua: rgb("#7fdbff")
+  gradient-init: rgb("#001f3f"),
+  gradient-end: rgb("#7fdbff")
 )
 
 #let global-text-setting = (

@@ -4,8 +4,8 @@
 #let render-activities(slices: ()) = {
     cetz.canvas({
         import cetz.chart
-        // A linear gradient from blue navy to blue aqua
-        let gradient = gradient.linear(colors.navy, colors.aqua)
+        // A linear gradient from blue gradient-init to blue gradient-end
+        let gradient = gradient.linear(colors.gradient-init, colors.gradient-end)
 
         chart.piechart(
             slices,
