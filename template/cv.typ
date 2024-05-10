@@ -1,4 +1,4 @@
-#import "@local/typcv:0.1.0": *
+#import "@preview/chuli-cv:0.1.0": *
 #import "@preview/fontawesome:0.1.0": *
 
 #show: cv
@@ -91,7 +91,7 @@
 )
 
 #section("Education")
-#fancy_education(
+#education-entry(
   title: "Bounty Hunter certified", 
   company-or-university: "Somewhere", 
   date: "2060 - 2068", 
