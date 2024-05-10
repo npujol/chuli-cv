@@ -5,62 +5,14 @@
 #import "modules/skills.typ": *
 #import "modules/languages.typ": *
 #import "modules/piechart.typ": *
+#import "modules/education.typ": *
+#import "modules/entry.typ": *
 
-
-// Global variables
-//--------------------------------------------
-#let colors = (
-  accent: rgb("#007fad"),
-  inactive: luma(170)
-)
-
-// Cover letter Styles
-//--------------------------------------------
-
-#let letterHeaderNameStyle(str) = {
-  text(
-    fill: colors.accent,
-    weight: "bold",
-    str
-  )
-}
-
-#let letterHeaderAddressStyle(str) = {
-  text(
-  fill: colors.inactive,
-  size: 0.9em,
-  smallcaps(str)
-  )
-}
-
-#let letterDateStyle(str) = {
-  text(
-    size: 0.9em,
-    style: "italic",
-    str
-  )
-}
-
-#let letterSubjectStyle(str) = {
-  text(
-    fill: colors.accent,
-    weight: "bold",
-    underline(str)
-  )
-}
-
-#let footerStyle(str) = {
-  text(
-    size: 8pt,
-    fill: colors.inactive,
-    smallcaps(str)
-  )
-}
 
 // Cover letter Components
 //--------------------------------------------
 
-#let letterHeader(
+#let letter_header(
   name: "Your Name Here",
   address: "Your Address Here",
   recipientName: "Company Name Here",
@@ -68,38 +20,38 @@
   date: "Today's Date",
   subject: "Subject: Hey!"
 ) = {
-  letterHeaderNameStyle(name)
+  accent-subtopic-style(name)
   v(1pt)
-  letterHeaderAddressStyle(address)
+  inactive-ligth-style(address)
   v(1pt)
-  align(right, letterHeaderNameStyle(recipientName))
+  align(right, accent-subtopic-style(recipientName))
   v(1pt)
-  align(right, letterHeaderAddressStyle(recipientAddress))
+  align(right, inactive-ligth-style(recipientAddress))
   v(1pt)
-  letterDateStyle(date)
+  italic-text-style(date)
   v(1pt)
-  letterSubjectStyle(subject)
+  underline-accent-style(subject)
   linebreak(); linebreak()
 }
 
-#let letterSignature(path) = {
+#let letter_signature(path) = {
   linebreak()
   place(
-    right, 
-    dx:-65%, 
-    dy:-4%, 
+    letter-signature-style.position, 
+    dx:letter-signature-style.dx, 
+    dy:letter-signature-style.dy, 
     path,
   )
 }
 
-#let letterFooter(name: "Your Name Here") = {
+#let letter_footer(name: "Your Name Here") = {
   place(
-    bottom,
+    letter-footer-style.position,
     table(
-      columns: (1fr, auto),
-      inset: 0pt,
+      columns: letter-footer-style.table.columns,
+      inset: letter-footer-style.table.inset,
       stroke: none,
-      footerStyle(name),
+      footer-style(name),
     )
   )
 }
@@ -107,32 +59,31 @@
 // Cover letter layout
 //--------------------------------------------
 
-#let cover_letter(doc) = {
+#let cover_letter(content) = {
   set text(
-    weight: "regular",
-    size: 9pt,
+    font: body-style.fonts,
+    weight: body-style.weight,
+    size: body-style.size,
   )
-  set align(left)
+  set align(page-style.text.align)
   set page(
-    paper: "a4",
+    paper: page-style.paper,
     margin: (
-      left: 1.4cm,
-      right: 1.4cm,
-      top: .8cm,
-      bottom: .4cm,
+      left: page-style.margin.left,
+      right: page-style.margin.right,
+      top: page-style.margin.top,
+      bottom: page-style.margin.bottom,
     ),
   )
-  doc
+  content
 }
 
-// CV Styles
+// CV Components
 //--------------------------------------------
-
 
 #let cv(
   content
 ) = {
-  
   set text(
     font: body-style.fonts,
     weight: body-style.weight,
@@ -158,7 +109,7 @@
 ) = {
   table(
     columns: header-style.table.columns,
-    inset: 0pt,
+    inset: header-style.table.inset,
     stroke: none,
     column-gutter: header-style.table.column-gutter,
     align: left + horizon,
@@ -170,7 +121,7 @@
       )
     },
     {
-      create-header-image(
+      create-header-avatar(
         profile-photo: profile-picture
       )
     }
@@ -178,9 +129,16 @@
   v(header-style.margins.bottom)
 }
 
-let body(
-  content
-) = {
+#let body(content) = {
+  set text(
+    font: body-style.fonts,
+    weight: body-style.weight,
+    size: body-style.size,
+  )
+  set list(
+    indent: list-style.indent
+  )
+  set align(left)
   content
 }
 
@@ -200,64 +158,12 @@ let body(
   v(entry-style.margins.top)
   table(
     columns: entry-style.table.columns,
-    inset: 0pt,
+    inset: entry-style.table.inset,
     stroke: none,
-    align: horizon,
+    align: entry-style.table.align,
     column-gutter: entry-style.margins.between-logo-and-title,
     {logo},
-    table(
-      columns: (1fr),
-      inset: 0pt,
-      stroke: none,
-      row-gutter: entry-style.margins.between-title-and-subtitle,
-      align: auto,
-      {
-        text(
-          size: entry-style.title.size,
-          weight: entry-style.title.weight,
-          fill: entry-style.title.color,
-          title
-        )
-        text(
-          size: entry-style.company-or-university.size, 
-          weight: entry-style.company-or-university.weight, 
-          fill: entry-style.company-or-university.color, 
-          " @" + company-or-university
-        )
-      },
-      {
-        table(
-          columns: 2,
-          inset: 0pt,
-          stroke: none,
-          align: horizon,
-          column-gutter: entry-style.margins.between-time-and-location,
-          {table(
-            columns: 2,
-            inset: 0pt,
-            stroke: none,
-            align: horizon,
-            column-gutter: entry-style.margins.between-icon-and-text,
-            {if date.len() > 0{fa-hourglass-2()}},
-            {text(
-              size: entry-style.time-and-location.size, 
-              weight: entry-style.time-and-location.weight, 
-              fill: entry-style.time-and-location.color, 
-              date
-            )},
-          )},
-          {table(
-            columns: 2,
-            inset: 0pt,
-            stroke: none,
-            align: horizon,
-            column-gutter: entry-style.margins.between-icon-and-text,
-            {if location.len() > 0{fa-location-dot()}},
-            {text(size: 10pt, location)}
-          )},
-        )
-      },
-    )
+    render-entry-header(title, company-or-university, date, location)
   )
   
   text()[
@@ -281,49 +187,39 @@ let body(
   table(
     columns: language-style.columns,
     inset: 0pt,
-    row-gutter: 2pt,
+    row-gutter: language-style.row-gutter,
     stroke: none,
-    align: (horizon, right),
-    text(
-      name, 
-      size: 10pt, 
-      weight: "bold", 
-      fill: colors.accent,
-    ),
+    align: language-style.align,
+    accent-subtopic-style(name),
     render-language(nivel: nivel),
     table.hline(
       stroke: (
         paint: colors.inactive, 
         thickness: 1pt, 
         dash: "dashed"
-      )
+      ),
     ),
-    text(
-      label, 
-      size: 10pt, 
-      fill: colors.inactive, 
-      weight: "light"
-    )
+    {
+      v(4pt)
+      inactive-ligth-style(label)
+    }
   )
 }
 
-#let free_time(name: "",icon:"") = {
+#let freetime(name: "",icon:"") = {
   table(
-    columns: language-style.columns,
+    columns: freetime-style.columns,
     inset: 0pt,
-    column-gutter: 1pt,
+    column-gutter: freetime-style.column-gutter,
     stroke: none,
-    align: (horizon, left),
+    align: freetime-style.align,
     {icon},
-    text(
-      name, 
-      size: 10pt, 
-    ),
+    regular-text-style(name),
   )
   dashed-line()
 }
 
-#let fancy_education(  
+#let education-entry(  
   title: "", 
   company-or-university: "", 
   date: "", 
@@ -336,65 +232,22 @@ let body(
     columns: 2,
     stroke: none,
     inset: 0pt,
-    row-gutter: 4pt,
-    column-gutter: 4pt,
-    table(
-      columns: (5%, 1fr),
-      inset: 0pt,
-      column-gutter: 2pt,
-      row-gutter: 2pt,
-      stroke: none,
-      align: horizon,
-      logo,
-      text(
-        title,           
-        size: 10pt,
-        weight: "bold",
-        fill: black,
-      ),
-      {},
-      text(
-        " " + company-or-university,
-        size: 10pt,
-        weight: "bold",
-        fill: colors.accent, 
-      )
-    ),
+    row-gutter: education-entry-style.row-gutter,
+    column-gutter: education-entry-style.column-gutter,
+    render-education-header(title, logo, company-or-university),
     table.vline(),
     table.cell(
-      text(
-        "GPA",
-        size: 10pt, 
-        weight: "bold"
-      ),
+      accent-subtopic-style("GPA"),
       align: center,
     ),
     table.cell(
-      table(
-        columns: 4,
-        stroke: none,
-        inset: 3pt,
-        fa-calendar-days(),
-        text(
-          size: 10pt, 
-          date
-        ),
-        fa-location-dot(),
-        text(
-          size: 10pt, 
-          location
-        )   
-      ),
+      render-education-icon-info(date: date, location: location),
       align: center,
     ),
     table.cell(
       {
-        text(
-          gpa,
-          size: 10pt,
-          fill: colors.accent,
-        )
-        text("/ " + gpa_total)
+        accent-subtopic-style(gpa)
+        regular-text-style("/ " + gpa_total)
       },
       inset: 4pt,
     )
