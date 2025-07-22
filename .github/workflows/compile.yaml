@@ -18,16 +18,15 @@ jobs:
           submodules: 'recursive'
 
       - name: Setup Typst
-        uses: yusancky/setup-typst@v2.0.1
-        id: setup-typst
+        uses: typst-community/setup-typst@v4
         with:
-          version: 'latest'
+          typst-version: 'latest'
 
       - run: typst compile ./template/cv.typ --font-path ./src/fonts --root .
       - run: typst compile ./template/letter.typ --font-path ./src/fonts --root .
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: ./template/*.pdf
