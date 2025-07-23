@@ -1,6 +1,6 @@
 #import "styles.typ": *
 
-#let render-socials(
+#let render-contact-info(
   socials: ()
 ) = {
   let columns = ()
@@ -46,14 +46,14 @@
       column-gutter: header-style.socials.column-gutter,
       align: center,
       stroke: none,
-      ..render-socials(
+      ..render-contact-info(
         socials: socials
       )
     )
   }
 }
 
-#let create-header-image(
+#let create-header-avatar(
   profile-photo: ""
 ) = {
   if profile-photo != none {

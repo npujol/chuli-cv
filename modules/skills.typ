@@ -1,6 +1,5 @@
 #import "styles.typ": *
 
-
 #let render-skills(skills: ()) = {
   for skill in skills {
     box(

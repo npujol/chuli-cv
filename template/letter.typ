@@ -1,8 +1,7 @@
-#import "@local/typcv:0.1.0": *
-#show: cover_letter
-#set text(size: 12pt)
+#import "@preview/chuli-cv:0.1.0": *
+#show: cover-letter
 
-#letterHeader(
+#letter-header(
   name: "Faye Valentine",
   address: [1 Rue Gonnet \ 75003 Paris, France],
   recipientName: [Bebop],
@@ -22,7 +21,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 Sincerely,
-#letterFooter(  
+#letter-footer(  
   name: "Faye Valentine",
 )
-#letterSignature(image("/media/signature.jpeg", width: 25%))
+
+#letter-signature(image("media/signature.jpeg", width: 25%))
